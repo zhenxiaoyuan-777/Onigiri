@@ -1,7 +1,6 @@
 #include "Application.hpp"
 #include "handlers/InputHandler.hpp"
-
-#include <iostream>
+#include "handlers/TextureHandler.hpp"
 
 Application *Application::instance = nullptr;
 Application *Application::Instance() {
@@ -25,6 +24,8 @@ void Application::init() {
     SDL_SetWindowTitle(window, "Onigiri");
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 
+    TextureHandler::Instance()->init();
+
     running = true;
 }
 
@@ -46,6 +47,16 @@ void Application::run() {
     }
 }
 
+void Application::clean() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+void Application::quit() { this->running = false; }
+
+SDL_Renderer *Application::get_renderer() { return this->renderer; }
+
 void Application::events() {
     Command *command = InputHandler::Instance()->keyboard_pressed();
     if (command) {
@@ -57,18 +68,13 @@ void Application::update() {}
 
 void Application::render() {
     SDL_RenderClear(renderer);
+
+    TextureHandler::Instance()->draw(pink_body_squircle);
+
     SDL_RenderPresent(renderer);
 }
 
-void Application::clean() {
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-}
-
-void Application::quit() { this->running = false; }
-
 Application::~Application() {
-    // clean();
+    clean();
     delete instance;
 }

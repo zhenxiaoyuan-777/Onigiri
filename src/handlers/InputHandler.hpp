@@ -7,8 +7,6 @@
 #include "../objects/commands/RightCommand.hpp"
 #include "../objects/commands/UpCommand.hpp"
 
-// #include "../objects/commands/Command.hpp"
-
 class InputHandler {
   public:
     static InputHandler *Instance();

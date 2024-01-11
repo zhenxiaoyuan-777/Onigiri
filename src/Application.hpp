@@ -3,6 +3,7 @@
 #include "entt/entt.hpp"
 
 #include "Constant.hpp"
+#include "components/Sprite.hpp"
 #include "objects/actors/Player.hpp"
 
 class Application {
@@ -13,6 +14,8 @@ class Application {
     void run();
     void clean();
     void quit();
+
+    SDL_Renderer *get_renderer();
 
   private:
     static Application *instance;
@@ -29,6 +32,7 @@ class Application {
     bool running = false;
 
     Player player;
+    Sprite pink_body_squircle{"characters", 320, 240, 80, 80};
 
     // entt
     entt::registry registry;

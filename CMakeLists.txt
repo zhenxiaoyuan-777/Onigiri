@@ -7,7 +7,8 @@ set(ONIGIRI_SOURCE_DIR src)
 set(ONIGIRI_SOURCE_FILES 
         ${ONIGIRI_SOURCE_DIR}/main.cpp 
         ${ONIGIRI_SOURCE_DIR}/Application.cpp 
-        ${ONIGIRI_SOURCE_DIR}/handlers/InputHandler.cpp)
+        ${ONIGIRI_SOURCE_DIR}/handlers/InputHandler.cpp
+        ${ONIGIRI_SOURCE_DIR}/handlers/TextureHandler.cpp)
 
 # exe
 add_executable(${PROJECT_NAME} ${ONIGIRI_SOURCE_FILES})
